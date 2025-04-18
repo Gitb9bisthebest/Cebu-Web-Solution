@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 217 33% 17%;
+    --foreground: 222 47% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 226 70% 55%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 240 24% 64%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 217 33% 12%;
+    --muted-foreground: 215 20.2% 75.1%;
+
+    --accent: 217 33% 25%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 25%;
+    --input: 217 33% 25%;
+    --ring: 224 76.3% 48%;
+
+    --radius: 0.5rem;
+
+    --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+
+    /* Section background colors - dark mode */
+    --hero-bg: 230 30% 10%;
+    --services-bg: 225 28% 12%;
+    --portfolio-bg: 220 26% 14%;
+    --process-bg: 218 25% 15%;
+    --about-bg: 215 24% 16%;
+    --contact-bg: 210 22% 18%;
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 226 70% 55%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 226 70% 55%;
+
+    /* Section background colors - light mode */
+    --hero-bg: 210 50% 98%;
+    --services-bg: 220 60% 97%;
+    --portfolio-bg: 230 70% 96%;
+    --process-bg: 235 75% 95%;
+    --about-bg: 240 80% 95%;
+    --contact-bg: 250 90% 94%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-400 to-violet-500 bg-clip-text text-transparent;
+  }
+
+  .code-block {
+    @apply font-mono bg-black/30 rounded-md p-4 text-sm;
+  }
+
+  .typewriter-cursor {
+    @apply inline-block w-0.5 h-5 bg-primary ml-0.5 animate-blink;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1;
+  }
+
+  /* Section background styles */
+  .section-hero {
+    @apply bg-[hsl(var(--hero-bg))];
+  }
+
+  .section-services {
+    @apply bg-[hsl(var(--services-bg))];
+  }
+
+  .section-portfolio {
+    @apply bg-[hsl(var(--portfolio-bg))];
+  }
+
+  .section-process {
+    @apply bg-[hsl(var(--process-bg))];
+  }
+
+  .section-about {
+    @apply bg-[hsl(var(--about-bg))];
+  }
+
+  .section-contact {
+    @apply bg-[hsl(var(--contact-bg))];
+  }
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+.perspective-container {
+  perspective: 1000px;
+}
