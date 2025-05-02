@@ -1,48 +1,9 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useForm } from "react-hook-form";
-import { useToast } from "@/hooks/use-toast";
-
-type QuoteFormData = {
-  projectType: string;
-  timeline: string;
-  budget: string;
-  description: string;
-  email: string;
-};
 
 const AboutSection: React.FC = () => {
-  const { toast } = useToast();
-  const form = useForm<QuoteFormData>();
-
-  const onSubmit = (data: QuoteFormData) => {
-    console.log("Quote Form Data:", data);
-    toast({
-      title: "Quote Request Received!",
-      description: "We'll send your free quote to " + data.email + " shortly.",
-    });
-    form.reset();
-  };
-
   const values = [
     {
       title: "Clean Code",
@@ -83,7 +44,7 @@ const AboutSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start mb-16">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           <div>
             <h3 className="text-2xl font-semibold mb-4">Our Story</h3>
             <p className="text-muted-foreground mb-4">
@@ -118,138 +79,6 @@ const AboutSection: React.FC = () => {
               </Card>
             ))}
           </div>
-        </div>
-
-        <div className="max-w-2xl mx-auto py-20" id="get-quote">
-          <h3 className="text-2xl font-semibold mb-8 text-center">
-            Get Your Free Quote
-          </h3>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <FormField
-                control={form.control}
-                name="projectType"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>What type of project do you need?</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select project type" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="html-css-js">
-                          Custom HTML/CSS/JavaScript
-                        </SelectItem>
-                        <SelectItem value="shopify">Shopify Store</SelectItem>
-                        <SelectItem value="webflow">Webflow Website</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="timeline"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>When do you need this completed?</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select timeline" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="asap">
-                          As soon as possible
-                        </SelectItem>
-                        <SelectItem value="1-month">Within 1 month</SelectItem>
-                        <SelectItem value="3-months">
-                          Within 3 months
-                        </SelectItem>
-                        <SelectItem value="flexible">Flexible</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="budget"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>What's your budget range?</FormLabel>
-                    <Select
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                    >
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select budget range" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="below-5k">Below $5,000</SelectItem>
-                        <SelectItem value="5k-10k">$5,000 - $10,000</SelectItem>
-                        <SelectItem value="10k-20k">
-                          $10,000 - $20,000
-                        </SelectItem>
-                        <SelectItem value="above-20k">Above $20,000</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Tell us about your project</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="Please describe your project requirements..."
-                        className="min-h-[100px]"
-                        {...field}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email address to receive the quote</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="your@email.com"
-                        {...field}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-
-              <Button type="submit" className="w-full">
-                Get Free Quote
-              </Button>
-            </form>
-          </Form>
         </div>
       </div>
     </section>

@@ -36,7 +36,18 @@ const Header: React.FC = () => {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <a href="#" className="text-xl font-bold">
-          Web<span className="text-primary">Alchemy</span>
+          {/* Light mode logo */}
+          <img
+            src="/logo-light.svg"
+            alt="WebAlchemy Logo"
+            className="block dark:hidden h-[3.5rem] w-auto object-contain"
+          />
+          {/* Dark mode logo */}
+          <img
+            src="/logo-dark.svg"
+            alt="WebAlchemy Logo"
+            className="hidden dark:block h-[3.5rem] w-auto object-contain"
+          />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
@@ -45,7 +56,7 @@ const Header: React.FC = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-sm text-foreground/80 hover:text-primary transition-colors"
+                className="text-foreground/80 hover:text-primary transition-colors"
               >
                 {item.name}
               </a>

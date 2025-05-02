@@ -21,7 +21,7 @@ export const CodeAnimation: React.FC<CodeAnimationProps> = ({
       const timer = setTimeout(() => {
         setDisplayedCode((prev) => prev + code[currentIndex]);
         setCurrentIndex((prev) => prev + 1);
-      }, Math.random() * 100 + 30); // Random typing speed for natural effect
+      }, Math.random() * 40 + 10); // Random typing speed for natural effect
 
       return () => clearTimeout(timer);
     } else if (currentIndex >= code.length) {
@@ -58,22 +58,25 @@ export const CodeAnimation: React.FC<CodeAnimationProps> = ({
   );
 
   return (
-    // <pre className={cn("code-block overflow-x-auto text-left", className)}>
-    <pre
-      className={cn(
-        "code-block overflow-x-auto text-left rounded-md p-4",
-        "bg-[#0D0E17] text-white", // light mode background
-        "dark:bg-[#0D0E17] dark:text-white", // dark mode background
-        "shadow-lg border border-gray-700",
-        className
-      )}
-    >
-      <code
-        className="font-mono text-sm text-gray-200"
-        dangerouslySetInnerHTML={{ __html: formattedCode }}
-      />
-      {isTyping && <span className="typewriter-cursor"></span>}
-    </pre>
+    <div className="relative group">
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-gradient"></div>
+      <pre
+        className={cn(
+          "relative code-block overflow-x-auto text-left rounded-md p-4",
+          "bg-[#0D0E17] text-white",
+          "dark:bg-[#0D0E17] dark:text-white",
+          "border border-gray-700/50",
+          "h-[350px] overflow-y-auto",
+          className
+        )}
+      >
+        <code
+          className="font-mono text-sm text-gray-200"
+          dangerouslySetInnerHTML={{ __html: formattedCode }}
+        />
+        {isTyping && <span className="typewriter-cursor"></span>}
+      </pre>
+    </div>
   );
 };
 

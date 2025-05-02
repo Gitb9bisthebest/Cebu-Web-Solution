@@ -1,122 +1,119 @@
-
-import React from 'react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Code, ShoppingBag, Workflow } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-
-interface ServiceCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  features: string[];
-  className?: string;
-  iconBg?: string;
-}
-
-const ServiceCard: React.FC<ServiceCardProps> = ({ 
-  icon, 
-  title, 
-  description, 
-  features,
-  className,
-  iconBg = "bg-primary/10"
-}) => {
-  return (
-    <Card className={cn("card-hover border border-border/50", className)}>
-      <CardHeader>
-        <div className={cn("p-3 rounded-lg w-fit mb-4", iconBg)}>
-          {icon}
-        </div>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription className="text-muted-foreground">{description}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ul className="space-y-2">
-          {features.map((feature, index) => (
-            <li key={index} className="flex items-start gap-2">
-              <div className="rounded-full bg-primary/20 p-1 mt-0.5">
-                <svg className="h-2 w-2 fill-current text-primary" viewBox="0 0 8 8">
-                  <circle cx="4" cy="4" r="3" />
-                </svg>
-              </div>
-              <span className="text-sm text-muted-foreground">{feature}</span>
-            </li>
-          ))}
-        </ul>
-      </CardContent>
-      <CardFooter>
-        <Button variant="outline" className="w-full">Learn More</Button>
-      </CardFooter>
-    </Card>
-  );
-};
+import React, { useEffect } from "react";
+import { cn } from "@/lib/utils";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ServicesSection: React.FC = () => {
+  useEffect(() => {
+    AOS.init({ duration: 1200, easing: "ease-in-out" });
+  }, []);
+
   const services = [
     {
-      icon: <Code className="h-6 w-6 text-primary" />,
-      title: "Custom Web Development",
-      description: "Hand-crafted websites with clean HTML, CSS, and JavaScript",
+      imageUrl: "img/Coding.jpg",
+      title: "Fully Custom Websites",
+      alt: "A man coding a website",
+      description:
+        "We build handcrafted websites tailored to your goals, without relying on platforms like WordPress or Wix. You get a lean, performance-focused site that’s built from scratch — and fully yours.",
       features: [
-        "Semantic HTML5 structure",
-        "Responsive CSS with modern techniques",
-        "Interactive JavaScript functionality",
-        "Performance optimization",
-        "Cross-browser compatibility"
+        "Clean HTML, CSS, and JavaScript",
+        "Responsive layout across all devices",
+        "Fast loading times and lightweight code",
+        "Accessible and SEO-friendly structure",
       ],
-      iconBg: "bg-primary/10"
     },
     {
-      icon: <ShoppingBag className="h-6 w-6 text-orange-400" />,
-      title: "Shopify Development",
-      description: "Custom Shopify stores that convert visitors to customers",
+      imageUrl: "img/mobile-first.jpg",
+      alt: "Image of a mobile friendly website",
+      title: "Mobile-First and Performance-Driven",
+      description:
+        "We prioritize usability and speed — especially on mobile devices. This ensures your visitors get the best experience whether they’re browsing from a phone, tablet, or desktop.",
       features: [
-        "Custom theme development",
-        "Shopify app integration",
-        "Store optimization",
-        "Payment gateway setup",
-        "Ongoing maintenance"
+        "Optimized mobile layouts",
+        "Touch-friendly interactions",
+        "Lazy loading and compression",
+        "Minimal reliance on third-party scripts",
       ],
-      iconBg: "bg-orange-400/10"
     },
     {
-      icon: <Workflow className="h-6 w-6 text-blue-400" />,
-      title: "Webflow Websites",
-      description: "Stunning Webflow websites with pixel-perfect designs",
+      imageUrl: "img/SEO.jpg",
+      alt: "A notebook planner for SEO",
+      title: "SEO-Ready Foundations",
+      description:
+        "We build with SEO in mind from the start, so your site isn’t just good-looking — it’s discoverable. You’ll have clean code, structured data, and fast performance that search engines love.",
       features: [
-        "Custom Webflow development",
-        "Responsive design implementation",
-        "CMS setup and integration",
-        "Animation and interactions",
-        "SEO optimization"
+        "Semantic HTML for crawlability",
+        "Open Graph and meta tags setup",
+        "Page speed optimization",
+        "Clean URLs and sitemap support",
       ],
-      iconBg: "bg-blue-400/10"
-    }
+    },
   ];
 
   return (
-    <section id="services" className="py-20 section-services">
+    <section id="services" className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
-            We specialize in building custom web solutions that are as beautiful as they are functional,
-            focusing on clean code and exceptional user experiences.
+        {/* Header */}
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">What We Offer</h2>
+          <p className="text-muted-foreground">
+            We specialize in custom-built websites for local and startup
+            businesses. Our focus is on delivering fast, SEO-friendly, and
+            subscription-free websites that you fully own.
           </p>
         </div>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <ServiceCard 
-              key={index}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              features={service.features}
-              iconBg={service.iconBg}
-            />
-          ))}
+
+        {/* Services */}
+        <div className="space-y-24">
+          {services.map((service, index) => {
+            const isImageRight = index % 2 !== 0;
+
+            return (
+              <div
+                key={index}
+                className={cn("flex flex-col md:flex-row items-center gap-10", {
+                  "md:flex-row-reverse": isImageRight,
+                })}
+              >
+                {/* Image */}
+                <div
+                  className="w-full md:w-1/2"
+                  data-aos={isImageRight ? "fade-left" : "fade-right"}
+                >
+                  <img
+                    src={service.imageUrl}
+                    alt={service.alt}
+                    className="rounded-3xl w-full h-80 object-cover shadow-2xl"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Text Content */}
+                <div
+                  className="w-full md:w-1/2"
+                  data-aos={isImageRight ? "fade-right" : "fade-left"}
+                >
+                  <h3 className="text-2xl font-semibold mb-4">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-4">
+                    {service.description}
+                  </p>
+                  <ul className="space-y-2 text-muted-foreground list-disc pl-5 text-sm">
+                    {service.features.map((feature, i) => (
+                      <li key={i}>{feature}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Note about silent services */}
+        <div className="mt-20 max-w-2xl mx-auto text-center text-sm text-muted-foreground italic">
+          For more advanced needs like online stores or drag-and-drop editing,
+          we also build on Shopify and Webflow — but only if it fits your goals.
         </div>
       </div>
     </section>

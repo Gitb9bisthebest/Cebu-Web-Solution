@@ -32,7 +32,7 @@
     --input: 217 33% 25%;
     --ring: 224 76.3% 48%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
 
     --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
       "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
@@ -91,7 +91,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased text-base;
   }
 
   .gradient-text {
@@ -152,4 +152,42 @@
 
 .perspective-container {
   perspective: 1000px;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+[data-state="open"].animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 300% 300%;
+  animation: gradient 6s ease infinite;
 }
