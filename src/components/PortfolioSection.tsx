@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
@@ -87,12 +87,12 @@ const PortfolioSection: React.FC = () => {
       tags: ["Shopify", "Liquid", "E-commerce"],
     },
     {
-      category: "webflow",
+      category: "React.js/Next.js",
       title: "Creative Studio",
       description: "A dynamic portfolio website for a creative design agency",
       imageSrc:
         "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=2064",
-      tags: ["Webflow", "CMS", "Interactive"],
+      tags: ["React.js/Next.js", "CMS", "Interactive"],
     },
     {
       category: "html-css",
@@ -111,12 +111,12 @@ const PortfolioSection: React.FC = () => {
       tags: ["Shopify", "Custom Theme", "E-commerce"],
     },
     {
-      category: "webflow",
+      category: "React.js/Next.js",
       title: "Architecture Firm",
       description: "Portfolio website for an award-winning architecture firm",
       imageSrc:
         "https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=2070",
-      tags: ["Webflow", "Animation", "Portfolio"],
+      tags: ["React.js/Next.js", "Animation", "Portfolio"],
     },
   ];
 
@@ -127,7 +127,7 @@ const PortfolioSection: React.FC = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Portfolio</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Browse through our latest projects showcasing our expertise in
-            HTML/CSS/JS, Shopify, and Webflow development.
+            HTML/CSS/JS, Shopify, and React.js/Next.js development.
           </p>
         </div>
 
@@ -143,7 +143,7 @@ const PortfolioSection: React.FC = () => {
                 <span>HTML/CSS/JS</span>
               </TabsTrigger>
               <TabsTrigger value="shopify">Shopify</TabsTrigger>
-              <TabsTrigger value="webflow">Webflow</TabsTrigger>
+              <TabsTrigger value="webflow">React.js/Next.js</TabsTrigger>
             </TabsList>
           </div>
 
@@ -178,7 +178,7 @@ const PortfolioSection: React.FC = () => {
           <TabsContent value="webflow" className="mt-0">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {portfolioItems
-                .filter((item) => item.category === "webflow")
+                .filter((item) => item.category === "React.js/Next.js")
                 .map((item, index) => (
                   <PortfolioItem key={index} {...item} />
                 ))}

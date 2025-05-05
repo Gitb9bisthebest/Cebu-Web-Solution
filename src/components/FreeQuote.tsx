@@ -96,8 +96,10 @@ const FreeQuote: React.FC = () => {
                         <SelectItem value="html-css-js">
                           Custom HTML/CSS/JavaScript
                         </SelectItem>
+                        <SelectItem value="react-next">
+                          React.js/Next.js
+                        </SelectItem>
                         <SelectItem value="shopify">Shopify Store</SelectItem>
-                        <SelectItem value="webflow">Webflow Website</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -125,10 +127,8 @@ const FreeQuote: React.FC = () => {
                         <SelectItem value="asap">
                           As soon as possible
                         </SelectItem>
+                        <SelectItem value="15-days">Within 15 days</SelectItem>
                         <SelectItem value="1-month">Within 1 month</SelectItem>
-                        <SelectItem value="3-months">
-                          Within 3 months
-                        </SelectItem>
                         <SelectItem value="flexible">Flexible</SelectItem>
                       </SelectContent>
                     </Select>
@@ -154,12 +154,12 @@ const FreeQuote: React.FC = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="below-5k">Below $5,000</SelectItem>
-                        <SelectItem value="5k-10k">$5,000 - $10,000</SelectItem>
+                        <SelectItem value="below-5k">Below ₱5,000</SelectItem>
+                        <SelectItem value="5k-10k">₱5,000 - ₱10,000</SelectItem>
                         <SelectItem value="10k-20k">
-                          $10,000 - $20,000
+                          ₱10,000 - ₱20,000
                         </SelectItem>
-                        <SelectItem value="above-20k">Above $20,000</SelectItem>
+                        <SelectItem value="above-20k">Above ₱20,000</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />

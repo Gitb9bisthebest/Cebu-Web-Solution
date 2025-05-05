@@ -36,7 +36,7 @@ const AboutSection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            About WebAlchemy
+            About Cebu Web Solution
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             We're a team of passionate developers and designers creating
@@ -48,15 +48,15 @@ const AboutSection: React.FC = () => {
           <div>
             <h3 className="text-2xl font-semibold mb-4">Our Story</h3>
             <p className="text-muted-foreground mb-4">
-              WebAlchemy was founded with a simple mission: to transform the web
-              development landscape by creating websites that combine clean code
-              with stunning design.
+              Cebu Web Solution was founded with a simple mission: to transform
+              the web development landscape by creating websites that combine
+              clean code with stunning design.
             </p>
             <p className="text-muted-foreground mb-4">
               What started as a small freelance operation has grown into a
-              specialized agency serving clients worldwide, with expertise
-              spanning custom HTML/CSS/JS development, Shopify store creation,
-              and Webflow website design.
+              specialized agency serving clients locally, with expertise
+              spanning custom HTML/CSS/JS development,React.js, Next.js and
+              Shopify store creation.
             </p>
             <p className="text-muted-foreground">
               Today, we continue to push boundaries with every project, turning

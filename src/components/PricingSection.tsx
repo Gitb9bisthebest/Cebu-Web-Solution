@@ -37,7 +37,7 @@ const pricingPlans = [
   },
   {
     title: "Business Plan",
-    price: "$₱20,000",
+    price: "₱20,000",
     description:
       "Designed for businesses looking to establish a more professional and functional online presence.",
     features: [

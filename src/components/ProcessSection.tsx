@@ -19,40 +19,99 @@ gsap.registerPlugin(_ScrollTrigger);
 
 const steps = [
   {
-    icon: <Search className="w-8 h-8 text-blue-400" />,
+    icon: <Search className="w-8 h-8" />,
+    step: "01",
     title: "Research & Discovery",
-    description:
-      "We start by understanding your goals, target audience, and project requirements in detail.",
+    backgroundUrl: "/ourprocess/research-discovery.jpg",
+    description: [
+      "This is the foundation of any successful web project. During this phase, we:",
+      [
+        "Hold discussions or workshops to understand your business goals, target users, and unique selling points.",
+        "Analyze competitors and industry standards to find opportunities and avoid pitfalls.",
+        "Gather content, technical requirements, and design preferences to shape a clear vision.",
+      ],
+      "Goal: Define the problem we’re solving and ensure we’re building the right solution from the start.",
+    ],
   },
   {
-    icon: <FileText className="w-8 h-8 text-purple-400" />,
+    icon: <FileText className="w-8 h-8" />,
+    step: "02",
     title: "Planning & Strategy",
-    description:
-      "Creating a detailed roadmap and technical specifications for your project.",
+    backgroundUrl: "/ourprocess/planning.jpg",
+    description: [
+      "Once we know what you need, we build a solid plan. This includes:",
+      [
+        "Creating a sitemap that outlines all the pages and content structure.",
+        "Wireframing key pages to show layout ideas before full design begins.",
+        "Defining the technologies, platforms, and integrations to be used.",
+        "Setting a realistic project timeline and assigning responsibilities.",
+      ],
+      "Goal: Turn ideas into a practical, step-by-step blueprint.",
+    ],
   },
   {
-    icon: <Layout className="w-8 h-8 text-amber-400" />,
+    icon: <Layout className="w-8 h-8" />,
+    step: "03",
     title: "Design & Wireframes",
-    description:
-      "Crafting intuitive layouts and user interfaces that align with your brand.",
+    backgroundUrl: "/ourprocess/design-wireframe.jpg",
+    description: [
+      "This is where the visual identity of the site comes to life. We:",
+      [
+        "Begin with wireframes (simple sketches or digital layouts) to map out page structure and user flow.",
+        "Apply colors, fonts, images, and branding elements to create high-fidelity mockups.",
+        "Design for responsiveness, ensuring the site looks great on desktop and mobile.",
+        "Collect feedback and make refinements before development starts.",
+      ],
+      "Goal: Create a beautiful, user-centered design that aligns with your brand and goals.",
+    ],
   },
   {
-    icon: <Code2 className="w-8 h-8 text-green-400" />,
+    icon: <Code2 className="w-8 h-8" />,
+    step: "04",
     title: "Development",
-    description:
-      "Writing clean, efficient code following best practices and modern standards.",
+    backgroundUrl: "/ourprocess/development.jpg",
+    description: [
+      "The approved designs are now brought to life through code. This stage involves:",
+      [
+        "Frontend development (HTML, CSS, JavaScript) to build interactive, responsive layouts.",
+        "Backend development for dynamic features (like databases, admin panels, user logins).",
+        "Integrating third-party tools, APIs, or content management systems.",
+        "Ensuring clean, maintainable, and scalable code.",
+      ],
+      "Goal: Build a functional, secure, and high-performing website.",
+    ],
   },
   {
-    icon: <TestTube2 className="w-8 h-8 text-blue-400" />,
+    icon: <TestTube2 className="w-8 h-8" />,
+    step: "05",
     title: "Testing & QA",
-    description:
-      "Rigorous testing across devices and browsers to ensure everything works perfectly.",
+    backgroundUrl: "/ourprocess/testing.jpg",
+    description: [
+      "Before launch, we run comprehensive checks, including:",
+      [
+        "Cross-browser testing (Chrome, Firefox, Safari, etc.) and device testing (mobile, tablet, desktop).",
+        "Functionality testing for forms, buttons, navigation, and interactive elements.",
+        "Performance testing for load speed and responsiveness.",
+        "Fixing bugs and final tweaks based on client feedback.",
+      ],
+      "Goal: Ensure the site is error-free and provides a smooth user experience.",
+    ],
   },
   {
-    icon: <Rocket className="w-8 h-8 text-purple-400" />,
+    icon: <Rocket className="w-8 h-8" />,
+    step: "06",
     title: "Launch & Support",
-    description:
-      "Deploying your project and providing ongoing maintenance and support.",
+    backgroundUrl: "/ourprocess/launch.jpg",
+    description: [
+      "Your website is ready to go live! We handle:",
+      [
+        "Hosting setup and domain connection.",
+        "Final deployment and go-live coordination.",
+        "Post-launch monitoring to quickly resolve any unexpected issues.",
+        "Ongoing support and maintenance plans for updates, backups, and improvements.",
+      ],
+      "Goal: Deliver a stable launch and stay available to support your long-term success.",
+    ],
   },
 ];
 
@@ -120,22 +179,23 @@ export default function ProcessSection() {
             </p>
           </div>
 
-          <div className="gsap-sticky-cards h-[80vh]">
+          <div className="gsap-sticky-cards h-[80vh] ">
             <div className="gsap-cards-container mx-auto">
               {steps.map((step, idx) => (
                 <Card
                   key={idx}
                   className="gsap-card bg-card border border-border/50 overflow-hidden"
+                  style={{
+                    backgroundImage: `url(${step.backgroundUrl})`, // Apply background image here
+                    backgroundSize: "cover", // Ensure the image covers the area
+                    backgroundPosition: "center", // Center the image within the card
+                  }}
                 >
                   <CardContent className="flex flex-col items-center justify-center text-center p-6 h-full">
-                    <div className="mb-4">{step.icon}</div>
-                    <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                    <p className="text-sm text-muted-foreground">
-                      {step.description}
-                    </p>
+                    {/* Icon + Step Number Side by Side */}
                     <div
                       className={cn(
-                        "mt-4 text-2xl font-bold",
+                        "flex items-center gap-2 text-2xl font-bold",
                         idx % 3 === 0
                           ? "text-blue-400"
                           : idx % 3 === 1
@@ -143,7 +203,33 @@ export default function ProcessSection() {
                           : "text-amber-400"
                       )}
                     >
-                      {(idx + 1).toString().padStart(2, "0")}
+                      <span>{step.step.toString().padStart(2, "0")}</span>
+                      <span>{step.icon}</span>
+                    </div>
+
+                    {/* Title without step number */}
+                    <h3 className="text-2xl font-semibold mb-2 text-black">
+                      {step.title}
+                    </h3>
+
+                    {/* Description */}
+                    <div className="text-xl space-y-2 text-black">
+                      {Array.isArray(step.description)
+                        ? step.description.map((part, i) =>
+                            Array.isArray(part) ? (
+                              <ul
+                                key={i}
+                                className="text-lg list-disc text-left list-inside"
+                              >
+                                {part.map((item, j) => (
+                                  <li key={j}>{item}</li>
+                                ))}
+                              </ul>
+                            ) : (
+                              <p key={i}>{part}</p>
+                            )
+                          )
+                        : step.description}
                     </div>
                   </CardContent>
                 </Card>

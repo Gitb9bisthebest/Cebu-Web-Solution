@@ -16,7 +16,7 @@ const ServicesSection: React.FC = () => {
       description:
         "We build handcrafted websites tailored to your goals, without relying on platforms like WordPress or Wix. You get a lean, performance-focused site that’s built from scratch — and fully yours.",
       features: [
-        "Clean HTML, CSS, and JavaScript",
+        "Clean HTML, CSS, JavaScript, React.js and Next.js",
         "Responsive layout across all devices",
         "Fast loading times and lightweight code",
         "Accessible and SEO-friendly structure",
@@ -112,8 +112,8 @@ const ServicesSection: React.FC = () => {
 
         {/* Note about silent services */}
         <div className="mt-20 max-w-2xl mx-auto text-center text-sm text-muted-foreground italic">
-          For more advanced needs like online stores or drag-and-drop editing,
-          we also build on Shopify and Webflow — but only if it fits your goals.
+          *** For more advanced needs like online stores or drag-and-drop
+          editing, we also build on Shopify— but only if it fits your goals.
         </div>
       </div>
     </section>
