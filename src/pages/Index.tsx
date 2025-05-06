@@ -9,6 +9,7 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import PricingSection from "@/components/PricingSection";
 import FreeQuote from "@/components/FreeQuote";
+import FAQ from "@/components/FAQSection";
 
 const Index = () => {
   return (
@@ -23,6 +24,7 @@ const Index = () => {
         <FreeQuote />
         <PricingSection />
         <ContactSection />
+        <FAQ />
       </main>
       <Footer />
     </div>

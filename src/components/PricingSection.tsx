@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
-import { PlanInquiryModal } from "./PricingModal"; // Make sure this matches your export
+import { PlanInquiryModal } from "./PricingModal";
 
 const pricingPlans = [
   {

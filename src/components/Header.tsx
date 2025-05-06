@@ -34,62 +34,78 @@ const Header: React.FC = () => {
           : "bg-transparent py-5"
       )}
     >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <a href="#" className="text-xl font-bold">
-          {/* Light mode logo */}
-          <img
-            src="/logo-light.svg"
-            alt="WebAlchemy Logo"
-            className="block dark:hidden h-[3.5rem] w-auto object-contain"
-          />
-          {/* Dark mode logo */}
-          <img
-            src="/logo-dark.svg"
-            alt="WebAlchemy Logo"
-            className="hidden dark:block h-[3.5rem] w-auto object-contain"
-          />
-        </a>
+      {/* Container with proper desktop padding */}
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative flex items-center justify-between">
+          {/* Logo with controlled spacing */}
+          <div className="flex-shrink-0">
+            <a href="#" className="block">
+              <img
+                src="/logo-light.svg"
+                alt="Logo"
+                className="block dark:hidden h-[3.5rem] w-auto"
+              />
+              <img
+                src="/logo-dark.svg"
+                alt="Logo"
+                className="hidden dark:block h-[3.5rem] w-auto"
+              />
+            </a>
+          </div>
 
-        <div className="hidden md:flex items-center gap-8">
-          <nav className="flex items-center gap-6">
-            {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-foreground/80 hover:text-primary transition-colors"
-              >
-                {item.name}
-              </a>
-            ))}
-          </nav>
+          {/* Desktop Navigation - centered properly */}
+          <div className="hidden md:flex items-center gap-8">
+            <nav className="flex items-center gap-6">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-foreground/80 hover:text-primary transition-colors"
+                >
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+            <div className="flex items-center gap-4">
+              <ThemeToggle />
+              <Button size="sm" asChild>
+                <a href="#get-quote">Get Quote</a>
+              </Button>
+            </div>
+          </div>
 
-          <div className="flex items-center gap-4">
+          {/* Mobile Controls - properly spaced */}
+          <div className="flex md:hidden items-center gap-4">
             <ThemeToggle />
-            <Button size="sm" asChild>
-              <a href="#get-quote">Get Quote</a>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMobileMenuOpen(true)}
+            >
+              <Menu className="h-5 w-5" />
             </Button>
           </div>
-        </div>
-
-        <div className="flex items-center md:hidden">
-          <ThemeToggle />
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsMobileMenuOpen(true)}
-          >
-            <Menu className="h-5 w-5" />
-          </Button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="fixed inset-0 bg-background z-50 flex flex-col">
-          <div className="container mx-auto px-4 py-5 flex justify-between items-center">
-            <a href="#" className="text-xl font-bold">
-              Web<span className="text-primary">Alchemy</span>
-            </a>
+          <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div className="flex-shrink-0">
+              <a href="#" className="block">
+                <img
+                  src="/logo-light.svg"
+                  alt="Logo"
+                  className="block dark:hidden h-[3.5rem] w-auto"
+                />
+                <img
+                  src="/logo-dark.svg"
+                  alt="Logo"
+                  className="hidden dark:block h-[3.5rem] w-auto"
+                />
+              </a>
+            </div>
             <Button
               variant="ghost"
               size="icon"

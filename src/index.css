@@ -90,8 +90,17 @@
     @apply border-border;
   }
 
+  html {
+    @apply overflow-x-hidden;
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased text-base;
+    @apply min-w-[320px] overflow-x-hidden;
+  }
+
+  .header-container {
+    @apply w-full mx-auto;
   }
 
   .gradient-text {
