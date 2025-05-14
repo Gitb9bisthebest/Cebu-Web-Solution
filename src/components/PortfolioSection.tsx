@@ -80,11 +80,11 @@ const PortfolioSection: React.FC = () => {
     },
     {
       category: "shopify",
-      title: "Urban Threads",
+      title: "Nf Fabric",
       description: "Custom Shopify store for a trendy fashion boutique",
-      imageSrc:
-        "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?q=80&w=2070",
+      imageSrc: "/portfolioImages/nffabric.png",
       tags: ["Shopify", "Liquid", "E-commerce"],
+      demoUrl: "https://www.nffabric.com/",
     },
     {
       category: "React.js/Next.js",
@@ -104,19 +104,19 @@ const PortfolioSection: React.FC = () => {
     },
     {
       category: "shopify",
-      title: "Handcrafted",
-      description: "Shopify store for artisanal handcrafted products",
-      imageSrc:
-        "https://images.unsplash.com/photo-1452860606245-08befc0ff44b?q=80&w=1770",
+      title: "HK Beauty Online Shop",
+      description: "Shopify store for curated Jewelery",
+      imageSrc: "/portfolioImages/hkbeauty.png",
       tags: ["Shopify", "Custom Theme", "E-commerce"],
+      demoUrl: "https://www.hkbeautyonlineshop.com/",
     },
     {
-      category: "React.js/Next.js",
+      category: "React.js",
       title: "Architecture Firm",
       description: "Portfolio website for an award-winning architecture firm",
       imageSrc:
         "https://images.unsplash.com/photo-1486718448742-163732cd1544?q=80&w=2070",
-      tags: ["React.js/Next.js", "Animation", "Portfolio"],
+      tags: ["React.js", "Animation", "Portfolio"],
     },
   ];
 
@@ -135,15 +135,13 @@ const PortfolioSection: React.FC = () => {
           <div className="flex justify-center mb-8">
             <TabsList>
               <TabsTrigger value="all" className="gap-2">
-                <Layers className="h-4 w-4" />
                 <span>All Projects</span>
               </TabsTrigger>
               <TabsTrigger value="html-css" className="gap-2">
-                <Code className="h-4 w-4" />
-                <span>HTML/CSS/JS</span>
+                <span>HTML/CSS</span>
               </TabsTrigger>
               <TabsTrigger value="shopify">Shopify</TabsTrigger>
-              <TabsTrigger value="webflow">React.js/Next.js</TabsTrigger>
+              <TabsTrigger value="React.js">React.js</TabsTrigger>
             </TabsList>
           </div>
 
@@ -175,10 +173,10 @@ const PortfolioSection: React.FC = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="webflow" className="mt-0">
+          <TabsContent value="React.js" className="mt-0">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {portfolioItems
-                .filter((item) => item.category === "React.js/Next.js")
+                .filter((item) => item.category === "React.js")
                 .map((item, index) => (
                   <PortfolioItem key={index} {...item} />
                 ))}

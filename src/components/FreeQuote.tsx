@@ -20,32 +20,12 @@ import { Button } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { useToast } from "@/hooks/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-
-const formSchema = z.object({
-  projectType: z.string().min(1, {
-    message: "Please select a project type",
-  }),
-  timeline: z.string().min(1, {
-    message: "Please select a timeline",
-  }),
-  budget: z.string().min(1, {
-    message: "Please select a budget range",
-  }),
-  description: z.string().min(10, {
-    message: "Description must be at least 10 characters.",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-});
-
-type QuoteFormData = z.infer<typeof formSchema>;
+import { quoteFormSchema, QuoteFormData } from "@/lib/validators";
 
 const FreeQuote: React.FC = () => {
   const { toast } = useToast();
   const form = useForm<QuoteFormData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(quoteFormSchema),
     defaultValues: {
       projectType: "",
       timeline: "",
@@ -55,13 +35,55 @@ const FreeQuote: React.FC = () => {
     },
   });
 
-  const onSubmit = (data: QuoteFormData) => {
-    console.log("Quote Form Data:", data);
-    toast({
-      title: "Quote Request Received!",
-      description: "We'll send your free quote to " + data.email + " shortly.",
-    });
-    form.reset();
+  const onSubmit = async (data: QuoteFormData) => {
+    const endpoint = import.meta.env.VITE_FORMSPREE_FREE_QUOTE;
+
+    if (!endpoint) {
+      toast({
+        title: "Missing Form Endpoint",
+        description: "Submission endpoint is not configured.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          projectType: data.projectType,
+          timeline: data.timeline,
+          budget: data.budget,
+          description: data.description,
+          email: data.email,
+        }),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "🎉 Quote Sent Successfully!",
+          description:
+            "We’ll contact you soon. Check your inbox at " + data.email,
+        });
+        form.reset();
+      } else {
+        toast({
+          title: "Submission Failed",
+          description: "Please try again later.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Something went wrong",
+        description: "Unable to send your request.",
+        variant: "destructive",
+      });
+      console.error("Formspree Error:", error);
+    }
   };
 
   return (
@@ -83,8 +105,8 @@ const FreeQuote: React.FC = () => {
                   <FormItem>
                     <FormLabel>What type of project do you need?</FormLabel>
                     <Select
+                      value={field.value}
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
                       required
                     >
                       <FormControl>
@@ -114,8 +136,8 @@ const FreeQuote: React.FC = () => {
                   <FormItem>
                     <FormLabel>When do you need this completed?</FormLabel>
                     <Select
+                      value={field.value}
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
                       required
                     >
                       <FormControl>
@@ -144,8 +166,8 @@ const FreeQuote: React.FC = () => {
                   <FormItem>
                     <FormLabel>What's your budget range?</FormLabel>
                     <Select
+                      value={field.value}
                       onValueChange={field.onChange}
-                      defaultValue={field.value}
                       required
                     >
                       <FormControl>
@@ -203,8 +225,16 @@ const FreeQuote: React.FC = () => {
                 )}
               />
 
-              <Button type="submit" className="w-full">
-                Get Free Quote
+              <Button
+                type="submit"
+                className="w-full"
+                disabled={form.formState.isSubmitting}
+              >
+                {form.formState.isSubmitting ? (
+                  <span className="animate-pulse">Sending . . .</span>
+                ) : (
+                  "Get Free Quote"
+                )}
               </Button>
             </form>
           </Form>

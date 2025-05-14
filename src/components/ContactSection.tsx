@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { FaTwitter, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
+import axios from "axios"; // Import axios to handle requests
 
 const ContactSection: React.FC = () => {
   const { toast } = useToast();
@@ -25,24 +26,48 @@ const ContactSection: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Send data to Formspree endpoint
+
+      const formspreeID = import.meta.env.VITE_FORMSPREE_CONTACT_US;
+
+      const response = await axios.post(formspreeID, formData);
+
+      if (response.status === 200) {
+        toast({
+          title: "Message sent successfully!",
+          description: "We'll get back to you as soon as possible.",
+        });
+
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        toast({
+          title: "Something went wrong!",
+          description:
+            "There was an error sending your message. Please try again later.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error(error);
       toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you as soon as possible.",
+        title: "Something went wrong!",
+        description:
+          "There was an error sending your message. Please try again later.",
+        variant: "destructive",
       });
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
+    } finally {
       setIsSubmitting(false);
-    }, 1500);
+    }
   };
 
   const contactInfo = [
