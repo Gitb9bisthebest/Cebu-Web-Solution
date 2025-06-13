@@ -4,6 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const AboutSection: React.FC = () => {
+  const appName = import.meta.env.VITE_APP_NAME || "Cebu Web Solution";
   const values = [
     {
       title: "Clean Code",
@@ -36,7 +37,7 @@ const AboutSection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            About Cebu Web Solution
+            About {appName}
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
             We're a team of passionate developers and designers creating
@@ -48,9 +49,9 @@ const AboutSection: React.FC = () => {
           <div>
             <h3 className="text-2xl font-semibold mb-4">Our Story</h3>
             <p className="text-muted-foreground mb-4">
-              Cebu Web Solution was founded with a simple mission: to transform
-              the web development landscape by creating websites that combine
-              clean code with stunning design.
+              {appName} was founded with a simple mission: to transform the web
+              development landscape by creating websites that combine clean code
+              with stunning design.
             </p>
             <p className="text-muted-foreground mb-4">
               What started as a small freelance operation has grown into a

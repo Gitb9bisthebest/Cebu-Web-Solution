@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 const FAQ = () => {
+  const appName = import.meta.env.VITE_APP_NAME || "Cebu Web Solution";
   const [activeIndex, setActiveIndex] = useState(null);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
 
@@ -33,8 +34,7 @@ const FAQ = () => {
   const faqItems = [
     {
       question: "What services do you offer?",
-      answer:
-        "Cebu Web Solution offers a comprehensive range of digital services including website design and development, e-commerce solutions, SEO optimization, digital marketing, and web maintenance. We specialize in creating tailored websites that align with your business goals.",
+      answer: `${appName} offers a comprehensive range of digital services including website design and development, e-commerce solutions, SEO optimization, digital marketing, and web maintenance. We specialize in creating tailored websites that align with your business goals.`,
     },
     {
       question: "How long does it take to build a website?",

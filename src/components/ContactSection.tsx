@@ -7,7 +7,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { FaTwitter, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
-import axios from "axios"; // Import axios to handle requests
 
 const ContactSection: React.FC = () => {
   const { toast } = useToast();
@@ -31,13 +30,26 @@ const ContactSection: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Send data to Formspree endpoint
+      const endpoint = import.meta.env.VITE_FORMSPREE_CONTACT_US;
 
-      const formspreeID = import.meta.env.VITE_FORMSPREE_CONTACT_US;
+      if (!endpoint) {
+        toast({
+          title: "Missing Form Endpoint",
+          description: "Submission endpoint is not configured.",
+          variant: "destructive",
+        });
+        return;
+      }
 
-      const response = await axios.post(formspreeID, formData);
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-      if (response.status === 200) {
+      if (response.ok) {
         toast({
           title: "Message sent successfully!",
           description: "We'll get back to you as soon as possible.",

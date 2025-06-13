@@ -58,8 +58,19 @@ export const PlanInquiryModal: React.FC<PlanInquiryModalProps> = ({
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
+    const endpoint = import.meta.env.VITE_FORMSPREE_PRICING;
+
+    if (!endpoint) {
+      toast({
+        title: "Missing Form Endpoint",
+        description: "Submission endpoint is not configured.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
-      const response = await fetch("https://formspree.io/f/mldjyygy", {
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

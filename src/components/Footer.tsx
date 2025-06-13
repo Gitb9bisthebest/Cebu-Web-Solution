@@ -4,25 +4,24 @@ import { FaTwitter, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const appName = import.meta.env.VITE_APP_NAME || "Cebu Web Solution";
 
   const footerLinks = {
     services: [
       { name: "HTML, CSS & JS", href: "#services" },
       { name: "Shopify Development", href: "#services" },
-      { name: "Webflow Development", href: "#services" },
+      { name: "React/Next.js Development", href: "#services" },
       { name: "Maintenance", href: "#services" },
     ],
     company: [
       { name: "About Us", href: "#about" },
       { name: "Portfolio", href: "#portfolio" },
-      { name: "Our Team", href: "#about" },
       { name: "Contact", href: "#contact" },
     ],
     resources: [
       { name: "Blog", href: "#" },
       { name: "Documentation", href: "#" },
-      { name: "FAQ", href: "#" },
-      { name: "Developer Tools", href: "#" },
+      { name: "FAQ", href: "#faq" },
     ],
   };
 
@@ -36,21 +35,21 @@ const Footer: React.FC = () => {
                 {/* Light mode logo */}
                 <img
                   src="/logo-light.svg"
-                  alt="WebAlchemy Logo"
+                  alt="Cebu Web Solution Logo"
                   className="block dark:hidden h-[4rem] w-auto object-contain"
                 />
                 {/* Dark mode logo */}
                 <img
                   src="/logo-dark.svg"
-                  alt="WebAlchemy Logo"
+                  alt="Cebu Web Solution Logo"
                   className="hidden dark:block h-[4rem] w-auto object-contain"
                 />
               </a>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
               Transforming ideas into exceptional web experiences with clean
-              code and modern design. Specializing in custom HTML/CSS/JS,
-              Shopify, and Webflow development.
+              code and modern design. Specializing in custom HTML/CSS/JS and
+              Shopify development.
             </p>
 
             <div className="flex gap-4 mt-2">
@@ -151,7 +150,7 @@ const Footer: React.FC = () => {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} WebAlchemy. All rights reserved.
+            © {currentYear} {appName}. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a

@@ -110,8 +110,8 @@ const HeroSection: React.FC = () => {
         {/* Call To Action Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Button size="lg" className="gap-2" asChild>
-            <a href="#get-quote">
-              Get a Quote
+            <a href="#contact">
+              Contact Us
               <ArrowRight className="w-4 h-4" />
             </a>
           </Button>
