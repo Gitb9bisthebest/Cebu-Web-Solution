@@ -4,7 +4,7 @@ import { FaTwitter, FaLinkedin, FaInstagram, FaFacebook } from "react-icons/fa";
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const appName = import.meta.env.VITE_APP_NAME || "Cebu Web Solution";
+  const appName = import.meta.env.VITE_APP_NAME || "Cebu Web Expert";
 
   const footerLinks = {
     services: [
@@ -28,6 +28,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-card pt-16 pb-8">
       <div className="container mx-auto px-4">
+        <Separator className="mb-8" />
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 text-lg mb-4">

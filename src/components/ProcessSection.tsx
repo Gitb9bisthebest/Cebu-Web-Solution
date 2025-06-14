@@ -310,3 +310,7 @@ export default function ProcessSection() {
     </section>
   );
 }
+
+// make line 305 display flex
+//  remove fallback for mobile device
+// add clamp to font size for responsiveness

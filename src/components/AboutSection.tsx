@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const AboutSection: React.FC = () => {
-  const appName = import.meta.env.VITE_APP_NAME || "Cebu Web Solution";
+  const appName = import.meta.env.VITE_APP_NAME || "Cebu Web Expert";
   const values = [
     {
       title: "Clean Code",
